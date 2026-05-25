@@ -1,0 +1,70 @@
+// Header builder
+
+
+// Footer builder
+.elementor-widget-rt-site-logo {
+	.site-branding {
+		.rt-mobile-logo, .rt-site-logo {
+			display: none !important;
+		}
+		&.dark {
+			.dark-logo {
+				display: block !important;
+			}
+		}
+		&.light {
+			.light-logo {
+				display: block !important;
+			}
+		}
+	}
+}
+.blenco-footer-builder {
+	.blenco-navbar {
+		li {
+			a {
+				position: relative;
+				transition: .5s;
+				&:hover {
+					margin-left: 5px;
+				}
+			}
+		}
+	}
+}
+.rt-footer-4-style {
+	.blenco-navbar {
+		li {
+			a {
+				&:hover {
+					margin-left: 0;
+				}
+			}
+		}
+	}
+}
+
+.rt-footer-wrap-3 {
+	position: relative;
+	overflow: hidden;
+	&::after, &::before {
+		content: "";
+		height: 73px;
+		width: 73px;
+		background-color: #D3D3D3;
+		filter: blur(125px);
+		position: absolute;
+		top: 0;
+	}
+	&::after {
+		left: 30px;
+		right: auto;
+	}
+	&::before {
+		right: 30px;
+		left: auto;
+	}
+}
+
+
+

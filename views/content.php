@@ -1,0 +1,58 @@
+<?php
+/**
+ * Template part for displaying content
+ *
+ * @link https://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package blenco
+ */
+
+$meta_list = blenco_option( 'rt_blog_meta', '', true );
+if ( blenco_option( 'rt_blog_above_meta_visibility' ) ) {
+	$meta_index = array_search( 'category', $meta_list );
+	unset( $meta_list[ $meta_index ] );
+}
+
+$wow = blenco_option('rt_animation') == 1 ? 'wow' : 'animation-off';
+$effect = blenco_option('rt_animation_effect');
+$delay = blenco_option('delay');
+$duration = blenco_option('duration');
+
+?>
+<article data-post-id="<?php the_ID(); ?>" <?php post_class( blenco_post_class() ); ?>>
+	<div class="article-inner-wrapper <?php echo esc_attr($wow . ' ' . $effect); ?>" data-wow-delay="<?php echo esc_attr($delay); ?>ms" data-wow-duration="<?php echo esc_attr($duration); ?>ms">
+		<?php 
+			$image_class = "";
+			if ( has_post_thumbnail() ) {
+				$image_class = "rt-blog-image-showing";
+			}
+			blenco_post_thumbnail('large');
+		?>
+		<div class="entry-wrapper <?php echo esc_attr( $image_class ); ?>">
+			<header class="entry-header">
+				<?php blenco_separate_meta( 'title-above-meta' );
+				if ( ! is_single() ) {
+					the_title( sprintf( '<h2 class="entry-title default-max-width"><a href="%s">', esc_url( get_permalink() ) ), '</a></h2>' );
+				} else {
+					the_title( '<h2 class="entry-title default-max-width">', '</h2>' );
+				}
+
+				if ( ! empty( $meta_list ) && blenco_option( 'rt_meta_visibility' ) ) {
+					echo blenco_post_meta( [
+						'with_list'     => true,
+						'with_icon'     => true,
+						'include'       => $meta_list,
+						'author_prefix' => blenco_option( 'rt_author_prefix' ),
+					] );
+				}
+				?>
+			</header>
+			<?php if ( blenco_option( 'rt_blog_content_visibility' ) ) : ?>
+				<div class="entry-content">
+					<?php blenco_entry_content() ?>
+				</div>
+			<?php endif; ?>
+			<?php blenco_entry_footer(); ?>
+		</div>
+	</div>
+</article>

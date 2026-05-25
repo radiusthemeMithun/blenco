@@ -1,0 +1,56 @@
+.moving-shape-wrap {
+	@media (max-width: 1024px) {
+		text-align: center;
+	}
+}
+
+.moving-shape-wrap {
+    perspective: 1000px;
+}
+
+.about-round-box {
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+}
+
+
+
+
+.about-round-box {
+	position: relative;
+	height: 200px;
+	width: 200px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background-color: $primary_color;
+	border-radius: 100%;
+}
+.moving-shape-box {
+	text-align: center;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+	.about-shape {
+		height: 170px;
+		width: 170px;
+		border-radius: 100%;
+		display: flex;
+		justify-content: center;
+		// align-items: center;
+		transition: all 0.3s ease-in-out;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translateY(-50%) translateX(-50%);
+		overflow: hidden;
+		.shape {
+			animation-duration: 10s;
+		}
+	}
+}

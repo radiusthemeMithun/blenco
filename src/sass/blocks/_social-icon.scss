@@ -1,0 +1,90 @@
+// RT Social Icon
+.rt-social-icon {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	flex-wrap: wrap;
+	.rt-social-item {
+		display: inline-flex;
+		align-items: center;
+		gap: 20px;
+		flex-wrap: wrap;
+		a {
+			font-size: 16px;
+			border-radius: 50px;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			transition: all 0.21s ease-in-out;
+			i {
+				display: block;
+			}
+			&:hover {
+				color: $white_color;
+				i {
+					animation: headShake 1.5s;
+				}
+			}
+		}
+	}
+	.arrow-image {
+		margin-top: -10px;
+	}
+}
+
+// RT Social Text
+.rt-social-text {
+	label {
+		font-weight: 600;
+		font-size: 15px;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		margin-right: 12px;
+	}
+	.text-list-box {
+		padding-left: 0;
+		display: inline-flex;
+		gap: 30px;
+	}
+	.text-list {
+		list-style: none;
+		margin: 0;
+		&:last-child {
+			a {
+				.rt-separator {
+					&::after {
+						display: none;
+					}
+				}
+			}
+		}
+	}
+	a {
+		position: relative;
+		.social-text {
+			font-weight: 600;
+			font-size: 15px;
+			color: $body_color;
+			transition: all .3s ease-in-out;
+			display: inline-block;
+			&:hover {
+				color: $primary_color;
+			}
+		}
+		.rt-separator {
+			&::after {
+				content: "";
+				height: 2px;
+				width: 15px;
+				background-color: $body_color;
+				position: absolute;
+				top: 12px;
+				right: -20px;
+				transform: rotate(120deg);
+			}
+		}
+	}
+}
+
+
+

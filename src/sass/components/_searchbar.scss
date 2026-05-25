@@ -1,0 +1,70 @@
+.rt-sidebar.widget_blenco_search,
+.rt-single-sidebar.widget_blenco_search {
+	
+	
+	border-radius: 20px;
+	width: 100%;
+	max-width: 100%;
+	margin-bottom: 50px;
+	padding: 50px;
+	position: relative;
+	overflow: hidden;
+	z-index: 1;
+	@media(max-width: 767px) {
+		padding: 40px;
+	}
+	&::before {
+		content: "";
+		height: 100%;
+		width: 100%;
+		background-image: url(../images/sidebar-bg.png);
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		top: 0;
+		background-repeat: no-repeat;
+		background-size: cover;
+		z-index: -1;
+	}
+	&::after {
+		display: none;
+	}
+}
+.blenco-search-form .search-box {
+	position: relative;
+	border: 1px solid #2C2C2C;
+	border-radius: 10px;
+	overflow: hidden;
+	background-color: #141414;
+	input {
+		font-size: 16px;
+		font-weight: 500;
+		height: 60px;
+		padding: 0 55px 0 20px;
+		border: none;
+		width: 100%;
+		border-radius: 6px;
+		background-color: $body_bg_color;
+	}
+	button {
+		position: absolute;
+		right: 0;
+		top: 0;
+		height: 100%;
+		border: none;
+		color: $meta_color;
+		background: transparent;
+		padding: 0 20px;
+
+		svg {
+			fill: $primary_color;
+			width: 22px;
+			height: 22px;
+			margin-top: 1.5px;
+		}
+		.btn-label {
+			display: none;
+		}
+	}
+}

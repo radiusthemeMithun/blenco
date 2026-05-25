@@ -1,0 +1,51 @@
+
+.rt-button .btn i,
+.rt-pricing-box-wrapper .icon-holder,
+
+.pagination-list li i,
+.swiper-navigation .swiper-button i:before,
+.frm-fluent-form .ff-btn-submit i:before,
+.rt-service-sidebar ul.menu li a:after,
+.rt-service-sidebar .blenco-navbar li a:after,
+.service-sidebar-menu ul.menu li a:after,
+.service-sidebar-menu .blenco-navbar li a:after,
+.service-single .service-single-item ul li:before {
+	transform: rotate(180deg);
+}
+
+
+.rt-service-accordion-layout .e-n-accordion .e-n-accordion-item .e-n-accordion-item-title-icon i {
+	transform: rotate(-120deg);
+}
+.rt-service-accordion-layout .e-n-accordion .e-n-accordion-item.e-n-accordion-item[open] .e-n-accordion-item-title-icon i {
+	transform: rotate(180deg);
+}
+.rt-pricing-box-wrapper.rt-pricing-layout-2 .icon-holder {
+	transform: rotate(0);
+}
+
+.rt-testimonial-layout-2 .swiper-navigation .swiper-button-prev, .rt-testimonial-layout-5 .swiper-navigation .swiper-button-prev {
+    right: calc(38% + 12px);
+    left: auto;
+}
+
+.rt-testimonial-layout-2 .swiper-navigation .swiper-button-next, .rt-testimonial-layout-5 .swiper-navigation .swiper-button-next {
+    left: auto;
+    right: calc(38% + 24px + 50px);
+}
+
+.swiper-slicer .swiper-slicer-image, .swiper-slicer .swiper-slicer-image-clone, .swiper-slicer .swiper-slicer-image-clones {
+	right: auto;
+	left: 0;
+}
+
+
+
+.blog-grid-2 .post-thumbnail-wrap .posted-on {
+	right: 5px;
+	bottom: 5px;
+}
+.wp-block-quote {
+	border-left-width: 0;
+}
+

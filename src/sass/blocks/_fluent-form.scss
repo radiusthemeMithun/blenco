@@ -1,0 +1,163 @@
+/*===============================
+Fluent form style
+================================*/
+
+.hero-subscribe {
+	@media (min-width: 768px) {
+		.frm-fluent-form .ff-t-container {
+			gap: 8px;
+		}
+	}
+}
+// @media (min-width: 768px) {
+// 	.frm-fluent-form .ff-t-container {
+// 		align-items: self-start;
+// 	}
+// }
+
+.rt-contact-form, .rt-faq-form {
+	border-radius: 20px;
+	width: 100%;
+	max-width: 100%;
+	margin-bottom: 50px;
+	padding: 50px;
+	padding-bottom: 30px;
+	position: relative;
+	overflow: hidden;
+	z-index: 1;
+	@media (max-width: 767px) {
+		padding: 30px;
+	}
+	&::before {
+		content: "";
+		height: 100%;
+		width: 100%;
+		background-image: url(../images/sidebar-bg.png);
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		top: 0;
+		background-repeat: no-repeat;
+		background-size: cover;
+		z-index: -1;
+	}
+	&:after {
+		content: "";
+		height: 100%;
+		width: 100%;
+		background-image: url(../images/sidebar.svg);
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		background-repeat: no-repeat;
+		background-position: right bottom;
+		z-index: -1;
+	}
+	.fluentform-widget-title {
+		position: relative;
+		font-size: 24px;
+		line-height: 1.4;
+		position: relative;
+		margin-bottom: 30px;
+		padding-bottom: 18px;
+		&::before {
+			content: "";
+			height: 5px;
+			width: 48px;
+			background-color: $primary_color;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			border-radius: 30px;
+		}
+	}
+	textarea {
+		min-height: 180px;
+	}
+}
+.rt-faq-form {
+	textarea {
+		min-height: 110px;
+	}
+}
+
+.ff_submit_btn_wrapper {
+	.ff-btn-submit {
+		&:hover {
+			opacity: 1;
+		}
+	}
+}
+.rt-footer-newsletter-form-1 {
+	
+	.frm-fluent-form {
+		background-color: $black-color;
+		border-radius: 15px;
+    	padding: 13px;
+		border: 1px solid #3D3D3D;
+		.ff-el-form-control {
+			height: 100% !important;
+		}
+		.ff_submit_btn_wrapper {
+			position: relative;
+		}
+		.ff-btn-submit {
+			margin-bottom: 0;
+			height: 38px;
+			width: 38px;
+			border-radius: 50% !important;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			padding: 0;
+			transition: all .3s ease-in-out;
+			position: absolute;
+			right: 5px;
+			top: 3px;
+			margin-top: 0 !important;
+			@media(max-width: 767px) {
+				top: -38px;
+			}
+			i {
+				font-size: 13px;
+				transform: rotate(-45deg);
+				transition: all .3s ease-in-out;
+			}
+			&:hover {
+				i {
+					transform: rotate(0);
+				}
+			}
+		}
+	}
+	form.fluent_form_8 .wpf_has_custom_css.ff-btn-submit {
+		min-width: auto;
+	}
+	form.fluent_form_8 .wpf_has_custom_css.ff-btn-submit:hover {
+		min-width: auto;
+	}
+	.fluentform .ff-el-group {
+		margin-bottom: 0;
+	}
+	.frm-fluent-form .ff-t-cell .ff_submit_btn_wrapper_custom button {
+        margin-bottom: 0;
+    }
+}
+
+.rt-footer-form-2 {
+	.fluentform .ff-t-container {
+		gap: 10px;
+        align-items: center;
+	}
+	.fluentform .ff-btn-submit {
+		margin-top: 0;
+		padding: 6px 40px;
+	}
+	.ff_submit_btn_wrapper {
+		@media(max-width: 767px) {
+			margin-top: 10px;
+		}
+	}
+}
+

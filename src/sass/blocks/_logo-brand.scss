@@ -1,0 +1,124 @@
+/*-------------------------------------
+#. EL: Logo Slider
+---------------------------------------*/
+.rt-logo-brand {
+	.logo-box {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		height: 160px;
+		background: #191919;
+		border-radius: 20px;
+		position: relative;
+		z-index: 1;
+		transition: all .4s linear;
+		&::before {
+			content: "";
+			height: 0;
+			width: 100%;
+			background-color: $primary_color;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			border-radius: 100px;
+			transition: all .5s ease-in-out;
+			transform-origin: top center;
+		}
+		&:hover {
+			border-radius: 100px;
+			&::before {
+				height: 100%;
+			}
+		}
+		.round-shape {
+			&::after {
+				top: -14px;
+				content: "";
+				position: absolute;
+				width: 57px;
+				height: 57px;
+				background: #D3D3D3;
+				filter: blur(100px);
+				left: 0;
+				right: 0;
+				margin: auto;
+				border-radius: 50%;
+				z-index: -1;
+			}
+		}
+
+		&.gray {
+			img {
+				transition: all 0.3s ease;
+			}
+			&:hover {
+				img {
+					opacity: 1;
+					filter: brightness(0%) contrast(100%) saturate(1%) blur(0px) hue-rotate(100deg);
+				}
+			}
+		}
+		&.brightness {
+			img {
+				filter: brightness(0)invert(1);
+				transition: all 0.3s ease;
+				opacity: 0.4;
+			}
+			&:hover {
+				img {
+					opacity: 1;
+				}
+			}
+		}
+		a {
+			line-height: 1;
+		}
+
+	}
+}
+.logo-marquee-wrap {
+	.rt-marquee {
+		width: 100%;
+		overflow: hidden;
+		white-space: nowrap;
+		&.marquee-left {
+			.rt-marquee-item {
+				display: inline-block;
+				will-change: transform;
+				animation: marquee_left 50s linear infinite;
+			}
+		}
+		&.marquee-right {
+			.rt-marquee-item {
+				display: inline-block;
+				will-change: transform;
+				animation: marquee_right 50s linear infinite;
+			}
+		}
+		&:hover {
+			.rt-marquee-item {
+				animation-play-state: paused;
+			}
+		}
+	}
+	.rt-logo-brand {
+		display: flex;
+		column-gap: 100px;
+		margin-right: 100px;
+		align-items: center;
+		.logo-box {
+			background-color: transparent;
+			background: transparent;
+			border-radius: 0;
+			height: 100%;
+			overflow: visible;
+			&::before {
+				display: none;
+			}
+		}
+	}
+}
+
+
+

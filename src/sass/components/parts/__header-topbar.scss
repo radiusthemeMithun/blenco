@@ -1,0 +1,84 @@
+/* Topbar Navigation
+***************************/
+.blenco-topbar {
+	font-size: 14px;
+	background-color: $primary_color;
+	color: $black_color;
+	min-height: 50px;
+	display: flex;
+	align-items: center;
+
+	@media(max-width: 650px) {
+		.topbar-right {
+			padding: 5px 0;
+		}
+	}
+	.topbar-row {
+		justify-content: space-between;
+		@media(max-width: 991px) {
+			justify-content: center;
+		}
+	}
+
+	.topbar-left {
+		span {
+			position: relative;
+			display: flex;
+			align-items: center;
+			column-gap: 8px;
+			&:not(:last-child):before {
+				content: "";
+				height: 5px;
+				width: 5px;
+				background-color: $black_color;
+				position: absolute;
+				top: 12px;
+				right: -18px;
+				border-radius: 50%;
+			}
+		}
+		svg {
+			fill: $black_color;
+			width: 15px;
+			height: 15px;
+		}
+		a {
+			color: $black_color;
+			&:hover {
+				color: $white_color;
+			}
+		}
+		@media(max-width: 767px) {
+			justify-content: center;
+		}
+	}
+
+	.social-icon {
+		display: inline-flex;
+		align-items: center;
+
+		a {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color: inherit;
+			width: 50px;
+			height: 50px;
+			border-right: 1px solid $black_color;
+
+			&:hover svg {
+				fill: $white_color;
+			}
+		}
+
+		[class*=rticon] svg {
+			width: 15px;
+			height: 15px;
+			fill: $black_color;
+		}
+	}
+}
+
+.has-trheader .site-header .blenco-topbar * {
+	color: $black_color;
+}
