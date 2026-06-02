@@ -1093,7 +1093,7 @@ if ( ! function_exists( 'blenco_entry_footer' ) ) {
 							<i class="icon-rt-arrow-right-1"></i>
 					   </span>
 					   <span class="btn-text">
-							<?php echo esc_html( blenco_readmore_text() ) ?>
+						   <?php echo blenco_readmore_text() ?>
 					   </span>
 					</a>
 				</footer>
