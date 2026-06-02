@@ -143,12 +143,21 @@
 	@media(min-width: 1200px) {
 		padding-bottom: 250px !important;
 	}
-	.rt-sticky-title, 
+	.rt-sticky-title,
 	.rt-panel-pin {
-		will-change: transform;
 		backface-visibility: hidden;
 		-webkit-font-smoothing: subpixel-antialiased;
-		transform: translateZ(0);
+		// Removed static `transform: translateZ(0)` and `will-change: transform`:
+		// they collide with ScrollTrigger transform-pinning + ScrollSmoother's
+		// matrix3d, causing per-frame sub-pixel jitter. GSAP manages will-change
+		// itself while pinning.
+	}
+
+	// Never let CSS transitions interpolate transforms that GSAP drives per frame.
+	.rt-sticky-title,
+	.rt-panel-pin,
+	.pin-spacer {
+		transition: none !important;
 	}
 
 	.rt-panel-pin:nth-child(1) { z-index: 1; }
@@ -165,9 +174,8 @@
 	.rt-sticky-title {
 		z-index: 10;
 		margin: 0;
-		position: relative; 
+		position: relative;
 		z-index: 100;
-		will-change: transform;
 		height: auto !important;
 	}
 

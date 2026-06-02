@@ -3684,20 +3684,6 @@ textarea {
   background: var(--rt-primary-color);
 }
 
-#smooth-wrapper {
-  overflow: hidden;
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-}
-
-#smooth-content {
-  overflow: visible;
-  width: 100%;
-}
-
 .metaStyleDash, .meta-style-dash-bg .rt-post-meta li:is(.category, .tag) a::before, .meta-style-dash-bg .rt-post-meta li::before, .meta-style-dash .rt-post-meta li::before {
   content: "-----";
   margin-right: 10px;
@@ -13386,10 +13372,13 @@ RT Post Grid
 }
 .rt-panel-pin-wrap .rt-sticky-title,
 .rt-panel-pin-wrap .rt-panel-pin {
-  will-change: transform;
   backface-visibility: hidden;
   -webkit-font-smoothing: subpixel-antialiased;
-  transform: translateZ(0);
+}
+.rt-panel-pin-wrap .rt-sticky-title,
+.rt-panel-pin-wrap .rt-panel-pin,
+.rt-panel-pin-wrap .pin-spacer {
+  transition: none !important;
 }
 .rt-panel-pin-wrap .rt-panel-pin:nth-child(1) {
   z-index: 1;
@@ -13412,7 +13401,6 @@ RT Post Grid
   margin: 0;
   position: relative;
   z-index: 100;
-  will-change: transform;
   height: auto !important;
 }
 .rt-info-layout-1 .info-box {
