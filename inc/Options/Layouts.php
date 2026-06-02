@@ -1,6 +1,9 @@
 <?php
-
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedNamespaceFound
 namespace RT\Blenco\Options;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 
 use RT\Blenco\Traits\SingletonTraits;
 

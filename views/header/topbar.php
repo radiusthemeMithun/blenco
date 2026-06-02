@@ -1,4 +1,8 @@
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * Template part for displaying header
  *
@@ -35,7 +39,7 @@ $_fullwidth = Opt::$header_width == 'full' ? '-fluid' : '';
 			<?php if( blenco_option( 'rt_topbar_social' ) ) { ?>
 			<div class="topbar-right d-flex gap-30 align-items-center">
 				<div class="social-icon">
-					<?php if( blenco_option( 'rt_follow_us_label' ) ) { ?><label><?php echo blenco_option( 'rt_follow_us_label' ) ?></label><?php } ?>
+					<?php if( blenco_option( 'rt_follow_us_label' ) ) { ?><label><?php echo esc_html( blenco_option( 'rt_follow_us_label' ) ); ?></label><?php } ?>
 					<?php blenco_get_social_html( '#555' ); ?>
 				</div>
 			</div>

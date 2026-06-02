@@ -1,4 +1,8 @@
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * The template for displaying Author pages
  *

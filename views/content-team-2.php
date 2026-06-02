@@ -1,4 +1,8 @@
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound, WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * @author  RadiusTheme
  * @since   1.0

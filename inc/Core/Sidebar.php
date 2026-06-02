@@ -1,6 +1,9 @@
 <?php
-
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedNamespaceFound
 namespace RT\Blenco\Core;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 
 use RT\Blenco\Helpers\Constants;
 use RT\Blenco\Helpers\Fns;
@@ -28,7 +31,7 @@ class Sidebar {
 
 			register_sidebar( [
 				'id'            => $sidebar['id'],
-				'name'          => sprintf( esc_html_x( '%s', 'Widget Name', 'blenco' ), $sidebar['name'] ),
+				'name'          => esc_html( $sidebar['name'] ),
 				'description'   => $sidebar['description'] ?? '',
 				'before_widget' => '<section id="%1$s" class="widget ' . $classes . ' %2$s">',
 				'after_widget'  => '</section>',

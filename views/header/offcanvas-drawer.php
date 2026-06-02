@@ -1,4 +1,8 @@
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * Template part for displaying header offcanvas
  *
@@ -15,13 +19,13 @@ $topinfo = ( blenco_option( 'rt_contact_address' ) || blenco_option( 'rt_phone' 
 
 <div class="blenco-offcanvas-drawer">
 	<div class="offcanvas-logo">
-		<?php echo blenco_site_logo( $logo_h1 ); ?>
+		<?php echo blenco_site_logo( $logo_h1 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- blenco_site_logo() returns markup built from wp_get_attachment_image() and esc_html(). ?>
 		<a class="trigger-icon trigger-off-canvas" href="#">×</a>
 	</div>
 	<?php if( blenco_option( 'rt_about_label' ) || blenco_option( 'rt_about_text' ) ) { ?>
 	<div class="offcanvas-about offcanvas-address">
-		<?php if( blenco_option( 'rt_about_label' ) ) { ?><label><?php echo blenco_option( 'rt_about_label' ) ?></label><?php } ?>
-		<?php if( blenco_option( 'rt_about_text' ) ) { ?><p><?php echo blenco_option( 'rt_about_text' ) ?></p><?php } ?>
+		<?php if( blenco_option( 'rt_about_label' ) ) { ?><label><?php echo esc_html( blenco_option( 'rt_about_label' ) ); ?></label><?php } ?>
+		<?php if( blenco_option( 'rt_about_text' ) ) { ?><p><?php blenco_html( blenco_option( 'rt_about_text' ), false ); ?></p><?php } ?>
 	</div>
 	<?php } ?>
 	<nav class="offcanvas-navigation" role="navigation">
@@ -39,7 +43,7 @@ $topinfo = ( blenco_option( 'rt_contact_address' ) || blenco_option( 'rt_phone' 
 
 	<div class="offcanvas-address">
 		<?php if( $topinfo ) { ?>
-			<?php if( blenco_option( 'rt_contact_info_label' ) ) { ?><label><?php echo blenco_option( 'rt_contact_info_label' ) ?></label><?php } ?>
+			<?php if( blenco_option( 'rt_contact_info_label' ) ) { ?><label><?php echo esc_html( blenco_option( 'rt_contact_info_label' ) ); ?></label><?php } ?>
 			<ul class="offcanvas-info">
 				<?php if( blenco_option( 'rt_contact_address' ) ) { ?>
 					<li><i class="icon-rt-location-4"></i><?php blenco_html( blenco_option( 'rt_contact_address' ) , false );?> </li>

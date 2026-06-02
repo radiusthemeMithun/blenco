@@ -1,4 +1,8 @@
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound, WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * The template for displaying all single posts
  *

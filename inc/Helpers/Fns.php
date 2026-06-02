@@ -1,5 +1,5 @@
 <?php
-
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedNamespaceFound
 namespace RT\Blenco\Helpers;
 
 use RT\Blenco\Core\Sidebar;
@@ -255,8 +255,10 @@ class Fns {
 	 * @return mixed|string
 	 */
 	public static function blog_column() {
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only display column override from URL; no state change.
 		if ( ! empty( $_REQUEST['column'] ) ) {
-			return sanitize_text_field( $_REQUEST['column'] );
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only display column override from URL; no state change.
+			return sanitize_text_field( wp_unslash( $_REQUEST['column'] ) );
 		}
 		$blog_colum_opt = blenco_option( 'rt_blog_column' ) !== 'default' ? blenco_option( 'rt_blog_column' ) : '';
 		$blog_sidebar   = Opt::$sidebar === 'default' ? 'rt-sidebar' : Opt::$sidebar;

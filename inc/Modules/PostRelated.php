@@ -1,4 +1,5 @@
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedNamespaceFound
 /**
  * Template part for single team related
  *
@@ -19,6 +20,7 @@ class PostRelated {
 		$query_type = blenco_option( 'rt_post_related_query' );
 
 		$args = array(
+			// phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in -- Required to exclude the current post from related items; bounded to a single ID.
 			'post__not_in'           => $current_post,
 			'posts_per_page'         => $related_item_number,
 			'no_found_rows'          => true,
@@ -117,12 +119,12 @@ class PostRelated {
 
 
 											if ( ! empty( $meta_list ) && blenco_option( 'rt_meta_visibility' ) ) {
-												echo blenco_post_meta( [
+												echo wp_kses_post( blenco_post_meta( [
 													'with_list'     => true,
 													'with_icon'     => true,
 													'include'       => $meta_list,
 													'author_prefix' => blenco_option( 'rt_author_prefix' ),
-												] );
+												] ) );
 											}
 											?>
 										</header>

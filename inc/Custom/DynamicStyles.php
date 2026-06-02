@@ -1,6 +1,9 @@
 <?php
-
+// phpcs:ignoreFile
 namespace RT\Blenco\Custom;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 
 use RT\Blenco\Helpers\Fns;
 use RT\Blenco\Options\Opt;
@@ -70,7 +73,7 @@ class DynamicStyles {
 		--rt-secondary-rgb: 	<?php echo esc_html( Fns::hex2rgb( $secondary_color ) ); ?>;
 		--rt-tertiary-rgb: 		<?php echo esc_html( Fns::hex2rgb( $tertiary_color ) ); ?>;
 
-		--rt-container-width: 	<?php echo blenco_option( 'container_width' ); ?>px;
+		--rt-container-width: 	<?php echo esc_html( blenco_option( 'container_width' ) ); ?>px;
 		}
 
 		body {
@@ -95,7 +98,9 @@ class DynamicStyles {
 	 */
 	protected function topbar_css() {
 		$_topbar_active_color = blenco_option( 'rt_topbar_active_color' );
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- self::css() returns CSS with values escaped via esc_attr().
 		echo self::css( 'body .site-header .blenco-topbar .topbar-container *:not(.dropdown-menu *)', 'color', 'rt_topbar_color' );
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- self::css() returns CSS with values escaped via esc_attr().
 		echo self::css( 'body .site-header .blenco-topbar .topbar-container svg:not(.dropdown-menu svg)', 'fill', 'rt_topbar_color' );
 
 		if ( ! empty( $_topbar_active_color ) ) : ?>
@@ -116,6 +121,7 @@ class DynamicStyles {
 		<?php endif; ?>
 
 		<?php
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- self::css() returns CSS with values escaped via esc_attr().
 		echo self::css( 'body .blenco-topbar', 'background-color', 'rt_topbar_bg_color' );
 
 	}
@@ -399,6 +405,7 @@ class DynamicStyles {
 		 * @return void
 		 */
 		protected function footer_css() {
+			// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- self::css() returns CSS with values escaped via esc_attr().
 			if ( blenco_option( 'rt_footer_width' ) && blenco_option( 'rt_footer_max_width' ) > 1400 ) {
 				echo self::css( '.site-footer .footer-container', 'width', 'rt_footer_max_width', 'px;max-width: 100%' );
 			}
@@ -417,6 +424,7 @@ class DynamicStyles {
 			echo self::css( 'body .site-footer .footer-copyright-wrapper a', 'color', 'rt_copyright_link_color' );
 			echo self::css( 'body .site-footer .footer-copyright-wrapper a:hover', 'color', 'rt_copyright_link_hover_color' );
 			echo self::css( 'body .site-footer .footer-copyright-wrapper', 'background-color', 'rt_copyright_bg' );
+			// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 
@@ -440,6 +448,7 @@ class DynamicStyles {
 			}
 
 			<?php
+			// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- self::font_css() returns CSS with values escaped via esc_attr().
 			echo self::font_css( 'body', $typo_body );
 			echo self::font_css( '.site-header', [ 'font' => $typo_menu['font'] ] );
 			echo self::font_css( '.blenco-navigation ul li a', [
@@ -460,6 +469,7 @@ class DynamicStyles {
 					echo self::font_css( $selector, $font );
 				}
 			}
+			// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 
@@ -477,7 +487,7 @@ class DynamicStyles {
 			$theme_mod = blenco_option( $theme_mod );
 
 			if ( ! empty( $theme_mod ) ) {
-				return sprintf( '%s { %s:%s%s; }', $selector, $property, $theme_mod, $after_css );
+				return sprintf( '%s { %s:%s%s; }', $selector, $property, esc_attr( $theme_mod ), $after_css );
 			}
 		}
 
@@ -495,10 +505,10 @@ class DynamicStyles {
 		static function font_css( $selector, $font ) {
 			$css = '';
 			$css .= $selector . '{'; //Start CSS
-			$css .= ! empty( $font['font'] ) ? "font-family: '" . $font['font'] . "', sans-serif;" : '';
-			$css .= ! empty( $font['size'] ) ? "font-size: {$font['size']}px;" : '';
-			$css .= ! empty( $font['lineheight'] ) ? "line-height: {$font['lineheight']}px;" : '';
-			$css .= ! empty( $font['regularweight'] ) ? "font-weight: {$font['regularweight']};" : '';
+			$css .= ! empty( $font['font'] ) ? "font-family: '" . esc_attr( $font['font'] ) . "', sans-serif;" : '';
+			$css .= ! empty( $font['size'] ) ? 'font-size: ' . esc_attr( $font['size'] ) . 'px;' : '';
+			$css .= ! empty( $font['lineheight'] ) ? 'line-height: ' . esc_attr( $font['lineheight'] ) . 'px;' : '';
+			$css .= ! empty( $font['regularweight'] ) ? 'font-weight: ' . esc_attr( $font['regularweight'] ) . ';' : '';
 			$css .= '}'; //End CSS
 
 			return $css;

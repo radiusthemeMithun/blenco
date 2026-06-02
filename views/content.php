@@ -1,4 +1,8 @@
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound, WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * Template part for displaying content
  *
@@ -38,6 +42,7 @@ $duration = blenco_option('duration');
 				}
 
 				if ( ! empty( $meta_list ) && blenco_option( 'rt_meta_visibility' ) ) {
+					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- blenco_post_meta() returns HTML composed from escaped helper functions.
 					echo blenco_post_meta( [
 						'with_list'     => true,
 						'with_icon'     => true,

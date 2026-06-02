@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  *
  * This theme uses PSR-4 and OOP logic instead of procedural coding

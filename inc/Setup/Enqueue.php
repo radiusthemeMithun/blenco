@@ -1,6 +1,9 @@
 <?php
-
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedNamespaceFound
 namespace RT\Blenco\Setup;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 
 use RT\Blenco\Helpers\Constants;
 use RT\Blenco\Options\Opt;

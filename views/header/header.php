@@ -1,4 +1,8 @@
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * Template part for displaying header
  *
@@ -18,7 +22,7 @@ $_fullwidth = Opt::$header_width == 'full' ? '-fluid' : '';
 	<div class="header-container rt-container<?php echo esc_attr($_fullwidth) ?>">
 		<div class="row navigation-menu-wrap align-middle m-0">
 			<div class="site-branding">
-				<?php echo blenco_site_logo( $logo_h1 ); ?>
+				<?php echo blenco_site_logo( $logo_h1 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- blenco_site_logo() returns markup built from wp_get_attachment_image() and esc_html(). ?>
 			</div><!-- .site-branding -->
 			<nav class="blenco-navigation pl-15 pr-15 <?php echo esc_attr( $menu_classes ) ?>" role="navigation">
 				<?php

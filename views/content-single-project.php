@@ -1,4 +1,8 @@
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound, WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * The template for displaying all single project
  *
@@ -118,8 +122,8 @@ $rt_project_rating = 5- intval( $ratting );
 
 					<?php if ( ! empty( $project_contact_email ) ) : ?>
 						<div class="project-contact-item">
-							<a href="mailto:<?php echo antispambot( $project_contact_email ); ?>" class="contact-text mail">
-								<?php echo antispambot( $project_contact_email ); ?>
+							<a href="mailto:<?php echo antispambot( $project_contact_email ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- antispambot() returns HTML-entity-encoded email safe for output; esc_attr() would double-encode and break it. ?>" class="contact-text mail">
+								<?php echo antispambot( $project_contact_email ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- antispambot() returns HTML-entity-encoded email safe for output; esc_html() would double-encode and break it. ?>
 							</a>
 						</div>
 					<?php endif; ?>

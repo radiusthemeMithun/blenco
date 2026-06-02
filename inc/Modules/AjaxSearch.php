@@ -1,4 +1,5 @@
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedNamespaceFound
 /**
  * @author  RadiusTheme
  * @since   1.0
@@ -6,6 +7,9 @@
  * Ajax Search
  */
 namespace RT\Blenco\Modules;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 use RT\Blenco\Traits\SingletonTraits;
 
 class AjaxSearch{
@@ -21,8 +25,8 @@ class AjaxSearch{
 		$args = array(
 			'post_type' => 'post',
 			'posts_per_page' => 8,
-			's' => esc_attr( $_POST['keyword'] ?? '' ),
-			'searchkey' => esc_attr( $_POST['searchkey'] ?? '' ),
+			's' => isset( $_POST['keyword'] ) ? sanitize_text_field( wp_unslash( $_POST['keyword'] ) ) : '',
+			'searchkey' => isset( $_POST['searchkey'] ) ? sanitize_text_field( wp_unslash( $_POST['searchkey'] ) ) : '',
 		);
 
 		$the_query = new \WP_Query( $args );

@@ -1,4 +1,8 @@
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound, WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * Template part for displaying service
  * @link https://codex.wordpress.org/Template_Hierarchy
@@ -30,7 +34,7 @@ $content = wp_trim_words( get_the_excerpt(), blenco_option( 'rt_service_excerpt_
 		<div class="service-content">
 			<div class="service-info">
 				<?php if (!empty( $rt_service_icon )  ) { ?>
-					<div class="service-icon" <?php echo wp_specialchars_decode( esc_attr( $service_bg ), ENT_COMPAT ); ?>><i class="<?php blenco_html( $rt_service_icon , false );?>"></i></div>
+					<div class="service-icon" <?php echo wp_specialchars_decode( esc_attr( $service_bg ), ENT_COMPAT ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Value is passed through esc_attr() first; decode restores quotes that terminate the inline attribute. ?>><i class="<?php blenco_html( $rt_service_icon , false );?>"></i></div>
 				<?php } ?>
 				<h2 class="service-title"><a href="<?php the_permalink();?>"><?php the_title();?></a></h2>
 			</div>

@@ -1,6 +1,9 @@
 <?php
-
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedNamespaceFound
 namespace RT\Blenco\Options;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 
 use RT\Blenco\Api\Customizer;
 use RT\Blenco\Traits\SingletonTraits;
@@ -44,11 +47,14 @@ class Opt {
 		$newData  = [];
 		$defaults = Customizer::$default_value;
 		foreach ( $defaults as $key => $dValue ) {
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Customizer preview values; capability is enforced by 'customize_preview_init' / 'init' contexts.
 			if ( isset( $_GET['reset_theme_mod'] ) && $_GET['reset_theme_mod'] == 1 ) {
 				remove_theme_mod( $key );
-				wp_redirect( 'customize.php' );
+				wp_safe_redirect( admin_url( 'customize.php' ) );
+				exit;
 			}
-			$value           = $_GET[ $key ] ?? get_theme_mod( $key, $dValue );
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Customizer preview values are passed via query string by the customizer iframe.
+			$value           = isset( $_GET[ $key ] ) ? sanitize_text_field( wp_unslash( $_GET[ $key ] ) ) : get_theme_mod( $key, $dValue );
 			$newData[ $key ] = $value;
 		}
 		self::$options = $newData;

@@ -1,5 +1,9 @@
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedNamespaceFound, WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 namespace RT\Blenco\Plugins;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * @author  RadiusTheme
  * @since   1.0
@@ -65,6 +69,7 @@ class BlencoWcFunctions {
 	}
 
 	public function body_classes( $classes ) {
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only display view toggle from URL; no state change.
 		if( isset( $_GET["displayview"] ) && $_GET["displayview"] == 'list' ) {
 			$classes[] = 'product-list-view';
 		}
@@ -127,6 +132,7 @@ class BlencoWcFunctions {
 	}
 
 	public function loop_shop_columns(  ) {
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only display view toggle from URL; no state change.
 		if( isset($_GET["displayview"]) && $_GET["displayview"] == 'list' ) {
 			$cols = 1;
 		} else {
@@ -275,21 +281,23 @@ class BlencoWcFunctions {
 		}
 
 		if ( $in_cart ) {
-			echo sprintf( '<a rel="nofollow" title="%s" href="%s" data-quantity="%s" data-product_id="%s" data-product_sku="%s">' . $html . '</a>',
+			printf( '<a rel="nofollow" title="%s" href="%s" data-quantity="%s" data-product_id="%s" data-product_sku="%s">%s</a>',
 				esc_attr( $product->add_to_cart_text() ),
 				esc_url( wc_get_cart_url() ),
 				esc_attr( isset( $quantity ) ? $quantity : 1 ),
 				esc_attr( $product->get_id() ),
-				esc_attr( $product->get_sku() )
+				esc_attr( $product->get_sku() ),
+				wp_kses_post( $html )
 			);
 		} else {
-			echo sprintf( '<a rel="nofollow" title="%s" href="%s" data-quantity="%s" data-product_id="%s" data-product_sku="%s" class="%s">' . $html . '</a>',
+			printf( '<a rel="nofollow" title="%s" href="%s" data-quantity="%s" data-product_id="%s" data-product_sku="%s" class="%s">%s</a>',
 				esc_attr( $product->add_to_cart_text() ),
 				esc_url( $product->add_to_cart_url() ),
 				esc_attr( isset( $quantity ) ? $quantity : 1 ),
 				esc_attr( $product->get_id() ),
 				esc_attr( $product->get_sku() ),
-				esc_attr( isset( $class ) ? $class : 'action-cart' )
+				esc_attr( isset( $class ) ? $class : 'action-cart' ),
+				wp_kses_post( $html )
 			);
 		}
 	}

@@ -1,4 +1,5 @@
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedNamespaceFound
 /**
  * Check Radius Theme License
  *
@@ -6,6 +7,9 @@
  */
 
 namespace RT\Blenco\Custom;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 
 use RT\Blenco\Traits\SingletonTraits;
 
@@ -35,6 +39,7 @@ class Utility {
 	 */
 	public function register_notice() {
 		// if licensed activated and license page return.
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only check of WP admin page slug; no state change.
 		if ( rtlc_is_valid()['success'] || ( isset( $_GET['page'] ) && 'rtlc' === $_GET['page'] ) ) {
 			return;
 		}
@@ -82,6 +87,7 @@ class Utility {
 	 * @return void
 	 */
 	public function style() {
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only check of WP admin page slug; no state change.
 		if ( ! isset( $_GET['page'] ) || 'rtlc' !== $_GET['page'] ) {
 			return;
 		}
@@ -147,6 +153,7 @@ class Utility {
 	 * @return void
 	 */
 	public function script() {
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only check of WP admin page slug; no state change.
 		if ( wp_script_is( 'jquery', 'done' ) && ( isset( $_GET['page'] ) && 'rtlc' === $_GET['page'] ) ) {
 			?>
 			<script type="text/javascript">
@@ -188,6 +195,7 @@ class Utility {
 		}
 
 		if ( wp_script_is( 'jquery', 'done' ) && ! rtlc_is_valid()['success'] ) {
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only check of WP admin page slug; no state change.
 			if ( isset( $_GET['page'] ) && 'fw-backups-demo-content' === $_GET['page'] ) {
 				?>
 				<script type="text/javascript">
@@ -200,6 +208,7 @@ class Utility {
 				<?php
 			}
 
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only check of WP admin page slug; no state change.
 			if ( isset( $_GET['page'] ) && 'blenco-install-plugins' === $_GET['page'] ) {
 				?>
 				<script type="text/javascript">

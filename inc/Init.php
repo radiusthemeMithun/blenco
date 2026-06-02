@@ -1,4 +1,5 @@
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedNamespaceFound
 /**
  *
  * This theme uses PSR-4 and OOP logic instead of procedural coding

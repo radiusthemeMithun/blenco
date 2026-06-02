@@ -1,4 +1,8 @@
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * Template part for displaying footer
  *
@@ -61,7 +65,7 @@ $copyright_center  = blenco_option( 'rt_social_footer' ) ? 'justify-content-betw
 				<div class="copyright-text">
 					<?php
 					$copy_text = blenco_option( 'rt_footer_copyright' );
-					$copy_text = str_replace( '[y]', date( 'Y' ), $copy_text );
+					$copy_text = str_replace( '[y]', gmdate( 'Y' ), $copy_text );
 					blenco_html( wp_kses_post( $copy_text ) );
 					?>
 				</div>

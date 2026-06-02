@@ -1,4 +1,5 @@
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedNamespaceFound, WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 /**
  * Template part for single service related
  *
@@ -27,6 +28,7 @@ class ServiceRelated {
 
 		$args = array(
 			'post_type'				 => 'rt-service',
+			// phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in -- Required to exclude the current service from related items; bounded to a single ID.
 			'post__not_in'           => $current_post,
 			'posts_per_page'         => $related_item_number,
 			'no_found_rows'          => true,
@@ -85,6 +87,7 @@ class ServiceRelated {
 				foreach ( $terms as $term ) {
 					$port_cat_links[] = $term->term_id;
 				}
+				// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Required to filter related services by shared category.
 				$args['tax_query'] = array (
 					array (
 						'taxonomy' => 'rt-service-category',
@@ -128,7 +131,7 @@ class ServiceRelated {
 									<div class="service-thumbs">
 										<?php if (!empty( $rt_service_icon )  ) { ?>
 											<div class="service-icon">
-												<i <?php echo wp_specialchars_decode( esc_attr( $service_bg ), ENT_COMPAT ); ?> class="<?php blenco_html( $rt_service_icon , false );?>"></i>
+												<i <?php echo wp_specialchars_decode( esc_attr( $service_bg ), ENT_COMPAT ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Value is passed through esc_attr() first; decode restores quotes that terminate the inline attribute. ?> class="<?php blenco_html( $rt_service_icon , false );?>"></i>
 											</div>
 										<?php } else  {
 											blenco_post_thumbnail('full');

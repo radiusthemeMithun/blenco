@@ -1,4 +1,5 @@
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedNamespaceFound, WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 /**
  * Template part for single team related
  *
@@ -20,6 +21,7 @@ class TeamRelated {
 
 		$args = array(
 			'post_type'				 => 'rt-team',
+			// phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in -- Required to exclude the current team member from related items; bounded to a single ID.
 			'post__not_in'           => $current_post,
 			'posts_per_page'         => $related_item_number,
 			'no_found_rows'          => true,
@@ -78,6 +80,7 @@ class TeamRelated {
 				foreach ( $terms as $term ) {
 					$port_cat_links[] = $term->term_id;
 				}
+				// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Required to filter related team members by shared category.
 				$args['tax_query'] = array (
 					array (
 						'taxonomy' => 'rt-team-category',

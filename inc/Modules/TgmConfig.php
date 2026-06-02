@@ -1,4 +1,5 @@
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedNamespaceFound
 /**
  * @author  RadiusTheme
  * @since   1.0.0
@@ -6,6 +7,9 @@
  */
 
 namespace RT\Blenco\Modules;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 use RT\Blenco\Traits\SingletonTraits;
 
 require_once get_template_directory() . '/inc/Lib/class-tgm-plugin-activation.php';

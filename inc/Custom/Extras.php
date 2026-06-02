@@ -1,6 +1,9 @@
 <?php
-
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedNamespaceFound
 namespace RT\Blenco\Custom;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 
 use RT\Blenco\Traits\SingletonTraits;
 use RT\Blenco\Options\Opt;
@@ -139,9 +142,9 @@ class Extras {
 		<?php if ( $item->menu_item_parent < 1 ) : ?>
 			<p class="description mega-menu-wrapper widefat">
 				<label for="blenco_mega_menu-<?php echo esc_attr($item_id); ?>" class="widefat">
-					<?php _e( 'Make as Mega Menu', 'blenco' ); ?><br>
+					<?php esc_html_e( 'Make as Mega Menu', 'blenco' ); ?><br>
 					<select class="widefat" id="blenco_mega_menu-<?php echo esc_attr($item_id); ?>" name="blenco_mega_menu[<?php echo esc_attr($item_id); ?>]">
-						<option value=""><?php _e( 'Choose Mega Menu', 'blenco' ); ?></option>
+						<option value=""><?php esc_html_e( 'Choose Mega Menu', 'blenco' ); ?></option>
 						<?php
 						for ( $item = 2; $item < 12; $item++ ) {
 							$menu_item  = $item;
@@ -156,7 +159,10 @@ class Extras {
 							$selected = ( $_mega_menu == $class ) ? ' selected="selected" ' : null;
 							?>
 							<option <?php echo esc_attr( $selected ); ?> value="<?php echo esc_attr( $class ); ?>">
-								<?php printf( __( 'Mega menu - %1$s Col %2$s', 'blenco' ), $menu_item, $label_hide ); ?>
+								<?php
+								/* translators: 1: number of menu columns, 2: hide-column-title label suffix */
+								printf( esc_html__( 'Mega menu - %1$s Col %2$s', 'blenco' ), esc_html( $menu_item ), esc_html( $label_hide ) );
+								?>
 							</option>
 							<?php
 						}
@@ -191,8 +197,15 @@ class Extras {
 	 * @return void
 	 */
 	function menu_update( $menu_id, $menu_item_db_id ) {
-		$_mega_menu         = $_POST['blenco_mega_menu'][ $menu_item_db_id ] ?? '';
-		$query_string_value = $_POST['blenco-menu-qs'][ $menu_item_db_id ] ?? '';
+		if ( ! current_user_can( 'edit_theme_options' ) ) {
+			return;
+		}
+		if ( ! isset( $_POST['update-nav-menu-nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['update-nav-menu-nonce'] ) ), 'update-nav_menu' ) ) {
+			return;
+		}
+
+		$_mega_menu         = isset( $_POST['blenco_mega_menu'][ $menu_item_db_id ] ) ? sanitize_text_field( wp_unslash( $_POST['blenco_mega_menu'][ $menu_item_db_id ] ) ) : '';
+		$query_string_value = isset( $_POST['blenco-menu-qs'][ $menu_item_db_id ] ) ? sanitize_text_field( wp_unslash( $_POST['blenco-menu-qs'][ $menu_item_db_id ] ) ) : '';
 
 		update_post_meta( $menu_item_db_id, 'blenco_mega_menu', $_mega_menu );
 		update_post_meta( $menu_item_db_id, 'blenco_menu_qs', $query_string_value );
@@ -260,13 +273,13 @@ class Extras {
 
 		if ( is_singular('post') ) {
 			$link = get_the_permalink() . '?v='.time();
-			echo '<meta property="og:url" content="' . $link . '" />';
+			echo '<meta property="og:url" content="' . esc_url( $link ) . '" />';
 			echo '<meta property="og:type" content="article" />';
-			echo '<meta property="og:title" content="' . $title . '" />';
+			echo '<meta property="og:title" content="' . esc_attr( $title ) . '" />';
 
 			if ( ! empty( $post->post_content ) ) {
-				echo '<meta property="og:description" content="' . wp_trim_words( $post->post_content,
-						150 ) . '" />';
+				echo '<meta property="og:description" content="' . esc_attr( wp_trim_words( $post->post_content,
+						150 ) ) . '" />';
 			}
 			$attachment_id = get_post_thumbnail_id( $post->ID );
 			if ( ! empty( $attachment_id ) ) {
@@ -274,14 +287,14 @@ class Extras {
 				if ( ! empty( $thumbnail ) ) {
 					$attachment = get_post($attachment_id);
 					$thumbnail[0] .= '?v='.time();
-					echo '<meta property="og:image" content="' . $thumbnail[0] . '" />';
-					echo '<link itemprop="thumbnailUrl" href="' . $thumbnail[0] . '">';
-					echo '<meta property="og:image:type" content="'.$attachment->post_mime_type.'">';
+					echo '<meta property="og:image" content="' . esc_url( $thumbnail[0] ) . '" />';
+					echo '<link itemprop="thumbnailUrl" href="' . esc_url( $thumbnail[0] ) . '">';
+					echo '<meta property="og:image:type" content="' . esc_attr( $attachment->post_mime_type ) . '">';
 				}
 			}
-			echo '<meta property="og:site_name" content="' . get_bloginfo( 'name' ) . '" />';
+			echo '<meta property="og:site_name" content="' . esc_attr( get_bloginfo( 'name' ) ) . '" />';
 			echo '<meta name="twitter:card" content="summary" />';
-			echo '<meta property="og:updated_time" content="'.time().'" />';
+			echo '<meta property="og:updated_time" content="' . esc_attr( time() ) . '" />';
 		}
 	}
 

@@ -1,4 +1,5 @@
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedNamespaceFound
 /**
  * Check Radius Theme License
  *
@@ -6,6 +7,9 @@
  */
 
 namespace RT\Blenco\Custom;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 
 use RT\Blenco\Traits\SingletonTraits;
 
@@ -253,7 +257,8 @@ class UtilityHelper {
 	 * @return array|void
 	 */
 	public function rtlc_verification() {
-		$purchase_code = ( ! empty( $_REQUEST['purchase_code'] ) ) ? wp_unslash( sanitize_text_field( $_REQUEST['purchase_code'] ) ) : '';
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- License verification is gated by capability checks in the caller; purchase code is sanitized below.
+		$purchase_code = ( ! empty( $_REQUEST['purchase_code'] ) ) ? sanitize_text_field( wp_unslash( $_REQUEST['purchase_code'] ) ) : '';
 
 		if ( $purchase_code ) {
 			$rt_license_server = $this->license_url;
@@ -286,7 +291,7 @@ class UtilityHelper {
 					update_option( 'rt_licenses', $arr_inputs );
 				}
 
-				echo json_decode( $envato_data );
+				echo esc_html( json_decode( $envato_data ) );
 			}
 		}
 

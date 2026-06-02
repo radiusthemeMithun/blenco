@@ -1,4 +1,5 @@
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedNamespaceFound
 /**
  * Theme Customizer
  *
@@ -6,6 +7,9 @@
  */
 
 namespace RT\Blenco\Api;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 
 use RT\Blenco\Api\Customizer\Pannels;
 use RT\Blenco\Traits\SingletonTraits;

@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * Template Name: Fullwidth Template
  *
@@ -16,7 +19,7 @@ get_header(); ?>
 
 			<div class="row">
 
-				<div class="<?php echo Fns::content_columns() ?>">
+				<div class="<?php echo esc_attr( Fns::content_columns() ); ?>">
 					<main id="main" class="site-main" role="main">
 
 						<?php
