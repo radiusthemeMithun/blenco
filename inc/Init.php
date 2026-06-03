@@ -45,10 +45,10 @@ final class Init {
 		Modules\TgmConfig::instance();
 		Modules\AjaxSearch::instance();
 
-		// if ( is_admin() ) {
-		// 	Custom\UtilityHelper::instance();
-		// 	Custom\Utility::instance();
-		// }
+//		 if ( is_admin() ) {
+//		 	Custom\UtilityHelper::instance();
+//		 	Custom\Utility::instance();
+//		 }
 
 		if ( class_exists( 'WooCommerce' ) ) {
 			Plugins\BlencoWcFunctions::instance();
